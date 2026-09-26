@@ -6,6 +6,10 @@ async function loadNews(category) {
   container.innerHTML = "<p>समाचार लोड हो रहे हैं...</p>";
   try {
     const res = await fetch(`${BACKEND_URL}/api/news?cat=${encodeURIComponent(category)}`);
+    if (!res.ok) {
+      throw new Error(`News API returned ${res.status}`);
+    }
+
     const data = await res.json();
 
     if (!data.articles || data.articles.length === 0) {
@@ -38,4 +42,5 @@ buttons.forEach(btn => {
   });
 });
 
-loadNews("भारत");
+const activeCategory = document.querySelector(".categories button.active");
+loadNews(activeCategory?.dataset.cat || "india");
