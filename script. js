@@ -17,12 +17,24 @@ async function loadNews(category) {
     data.articles.forEach(article => {
       const card = document.createElement("div");
       card.className = "card";
+
       card.innerHTML = `
         <h2>${article.title || ""}</h2>
         <p>${article.description || ""}</p>
         <div class="meta">${article.source || ""}</div>
-        <a href="${article.url}" target="_blank">पूरा पढ़ें →</a>
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer">पूरा पढ़ें →</a>
       `;
+
+      if (typeof article.image === "string" && article.image.startsWith("data:image/")) {
+        const image = document.createElement("img");
+        image.className = "card-image";
+        image.src = article.image;
+        image.alt = article.title || "समाचार चित्र";
+        image.loading = "lazy";
+        image.decoding = "async";
+        card.prepend(image);
+      }
+
       container.appendChild(card);
     });
   } catch (err) {
@@ -38,4 +50,4 @@ buttons.forEach(btn => {
   });
 });
 
-loadNews("भारत");
+loadNews(document.querySelector(".categories button.active")?.dataset.cat || "भारत");

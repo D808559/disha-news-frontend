@@ -11,9 +11,9 @@
     <h1>दिशा न्यूज़</h1>
     <div class="categories">
       <button data-cat="भारत" class="active">भारत</button>
-      <button data-cat="व्यापार">व्यापार</button>
-      <button data-cat="तकनीक">तकनीक</button>
-      <button data-cat="खेल">खेल</button>
+      <button data-cat="बिजनेस">व्यापार</button>
+      <button data-cat="टेक्नोलॉजी">तकनीक</button>
+      <button data-cat="स्पोर्ट्स">खेल</button>
     </div>
   </header>
 
